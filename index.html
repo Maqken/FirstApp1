@@ -5,17 +5,19 @@
     <title>Hello World!</title>
     <link rel="stylesheet" href="css/core.css?v=0001" />
 	  <link rel="stylesheet" href="css/unsemantic-grid-responsive-no-ie7.css" />
+	  <link rel="stylesheet" href="css/layout.css" />
   </head>
   <body>
     <script src="index.js"></script>
 
-    <div class="gridContainer">
+    <div class="mContainer centerBox maxWidthContainer doubleMargin">
         <div class=" grid-100 doubleMarginTop doubleMargin doublePaddingBottom borderBottom">
           <form>
-            User:<input type="text" onchange="GetAndShowSuscriptions()" name="fUser" id='UserName'> 
+            User:<input type="text" onchange="GetAndShowLiveSuscriptions()" name="fUser" id='UserName'> 
           </form>
-
-
+        </div>
+        <div class = "gridContainer">
+          <div id="channelGrid"></div>
         </div>
     </div>
   </body>
