@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <link rel="stylesheet" href="css/core.css?v=0001" />
-	  <link rel="stylesheet" href="css/unsemantic-grid-responsive-no-ie7.css" />
-	  <link rel="stylesheet" href="css/layout.css" />
-  </head>
-  <body>
-    <script src="index.js"></script>
 
-    <div class="mContainer centerBox maxWidthContainer doubleMargin">
-        <div class=" grid-100 doubleMarginTop doubleMargin doublePaddingBottom borderBottom">
-          <form>
-            User:<input type="text" onchange="GetAndShowLiveSuscriptions()" name="fUser" id='UserName'> 
-          </form>
-        </div>
-        <div class = "gridContainer">
-          <div id="channelGrid"></div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Quiero Stream</title>
+  <link rel="stylesheet" href="css/core.css?v=0001" />
+  <link rel="stylesheet" href="css/unsemantic-grid-responsive-no-ie7.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+</head>
+
+<body>
+  <script src="index.js"></script>
+
+  <div class="">
+    <div class="defaultMargin borderBottom paddingBottom">
+      <form>
+        User:<input type="text" onchange="GetAndShowLiveSuscriptions()" name="fUser" id='UserName' style="width:25%">
+        Stream:<input type="text" onchange="ShowLiveStream()" id='streamName' style="width:25%">
+        Vod:<input type="text" onchange="ShowVod()" id='vodId' style="width:25%">
+      </form>
     </div>
-  </body>
+    <div class="" >
+      <div id="channelGrid">
+        <!--<div class="defaultBoxPadding  grayBg " style="width:33%">
+          <div class="positionRelative overflowAuto tinyMargin">
+            <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/sacriel-profile_image-5453d0be9bdf7a43-300x300.jpeg" class="floatLeft marginLeft verticalAlignMiddle"style="height: 30px;">
+            <h1 class="center xxl floatLeft smallMarginLeft">Sacriel</h1>
+          </div>
+          <div >
+            <img  class="widthAll" src="https://static-cdn.jtvnw.net/jtv_user_pictures/sacriel-profile_image-5453d0be9bdf7a43-300x300.jpeg" class=""style="">
+          </div>
+          <div class=" doubleMarginTop">
+            <h2 class="center m">Kingsmen | !giveawayinfo Intel+Corsair+Ebuyer | !cheersboard</h2>
+            <p class="s"> stremeando: PLAYERUNKNOWN'S BATTLEGROUNDS</p>
+            <button class="generic_button positionRelative darkGrayBg widthAll">Ver</button>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
