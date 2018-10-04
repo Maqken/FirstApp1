@@ -1,4 +1,11 @@
 var cmd = require('node-cmd');
+const {google} = require('googleapis');
+
+// initialize the Youtube API library
+const youtube = google.youtube({
+version: 'v3',
+auth: 'AIzaSyCmfo2f63mY7yWZ1t5buHvcAKNskpc65ck',
+});
 
 function GetAndShowLiveSuscriptions() {
     var user = document.getElementById('UserName').value;
@@ -337,6 +344,54 @@ function displayVodsSepByCommas(vodId)
     streamRequest.send();
 }
 
+
+async function ShowYTList()
+{
+    var listId = document.getElementById('YTListId').value;
+    
+    /*
+    const headers = {};
+    var res = await youtube.playlists.list({
+        part: 'id,snippet',
+        id: listId,
+        headers: headers,
+      });
+    console.log(res);*/
+    
+    // the first query will return data with an etag
+    const res = await getPlaylistData(null);
+    const etag = res.data.etag;
+    console.log(`etag: ${etag}`);
+
+    // the second query will (likely) return no data, and an HTTP 304
+    // since the If-None-Match header was set with a matching eTag
+    const res2 = await getPlaylistData(etag);
+    console.log(res2.status);
+
+}
+
+
+async function getPlaylistData(etag) {
+    // Create custom HTTP headers for the request to enable use of eTags
+    var data = [];
+    const headers = {};
+    if (etag) {
+      headers['If-None-Match'] = etag;
+    }
+    do {
+        var res = await youtube.playlistItems.list({
+            part: 'id,snippet,contentDetails',
+            playlistId : 'PLplGIzXSUQ60QXaZQxmktQIhhYNImec92',
+            maxResults : 50,
+            headers: headers,
+          });
+        data = data.concat(res.data.items);
+        nextPageToken = res.data.nextPageToken;
+    } while (nextPageToken);
+    console.log('Status code: ' + res.status);
+    console.log(res);
+    return res;
+  }
 
 
 
