@@ -1,0 +1,49 @@
+.boton{	
+	background: transparent;
+	color: black;
+	border: 1px solid black;
+	border-radius: 4px;
+	height: 40px;
+	line-height: 2.5px;
+	padding-left: 16px;
+	padding-right: 16px;
+	outline: none;
+	cursor: pointer
+}
+
+.appStyle{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100vh;
+	width: 100vw;
+	background: #55DFBD
+}
+
+.panelStyle{
+	position: relative;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 320;
+	background: #45B0F9
+}
+.titleInputBox{		
+	width: auto;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.inputBox{
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.inputText{
+
+	width: auto;
+	margin-right: 16px;
+}

@@ -8,6 +8,7 @@
     "node-cmd": "^2.0.0"
   },
   "dependencies": {
-    "googleapis": "^34.0.0"
+    "googleapis": "^34.0.0",
+    "mithril": "^1.1.6"
   }
 }
