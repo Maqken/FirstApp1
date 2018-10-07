@@ -6,45 +6,21 @@ const youtube = google.youtube({
 version: 'v3',
 auth: 'AIzaSyCmfo2f63mY7yWZ1t5buHvcAKNskpc65ck',
 });
-var count = 0
-var displayYoutubeVod = function(videoCode)
-{
-}
-var MenuBoton = {
-    view: function(){
-        return m("button",{class: "boton", onclick:function(){count++}},count + " clicks")
-    }
-}
+
+let State = require("./Globals").state
+var MenuBoton = require("./MenuButton").component
+var Menu = require("./Menu").component
+var VodDisplay = require("./VodDisplay").component
+
+
 var App = {
     view: function()
     {
         return m("div",{class:"appStyle"},[
-            m(Menu),
-            m(MenuBoton)
+            State.menuToggle ? m(Menu,{state:State}) : "",
+            m(MenuBoton,{state:State}),
+            m(VodDisplay,{state:State})
         ])
-    }
-}
-var Menu = {
-    view: function()
-    {
-        return m("div",{class:"panelStyle"},[
-            m(inputBox,{title:"Youtube",findMethod:displayYoutubeVod})
-        ])
-    }
-}
-var inputBox = {
-    view: function(vnode)
-    {
-        return m("inputBox",{class:"inputBox"},[
-            m("p",{class:"titleInputBox"},vnode.attrs.title),
-            m("input",{class:"inputText",type:"text", onchange:vnode.attrs.findMethod})
-        ])
-    }
-}
-var vodDisplay = {
-    view:function()
-    {
-        return m("p","hola")
     }
 }
 m.mount(document.body,App)

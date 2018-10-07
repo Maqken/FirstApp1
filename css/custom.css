@@ -1,13 +1,16 @@
 .boton{	
-	background: transparent;
-	color: black;
-	border: 1px solid black;
-	border-radius: 4px;
+	background: url("../resources/menu.png");
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	align-self: flex-start;
+	border-style: none;
 	height: 40px;
 	line-height: 2.5px;
 	padding-left: 16px;
 	padding-right: 16px;
 	outline: none;
+	margin: 30px;
 	cursor: pointer
 }
 
@@ -46,4 +49,50 @@
 
 	width: auto;
 	margin-right: 16px;
+}
+.vodGrid{
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: flex-start;
+	width: auto;
+	height: auto;
+}
+.vodContainer{
+	overflow: hidden;
+	border-radius: 10px;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: auto;
+	height: auto;
+	background: #45B0F9;
+}
+.vodImage{
+	
+	background: rgb(69, 249, 159);
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+
+}
+.vodControls{
+
+	
+	background: rgb(249, 165, 69);
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+.qltyButton{
+	align-self: flex-start;
+	border-style: none;
+	
+	padding-left: 16px;
+	padding-right: 16px;
+	outline: none;
+	cursor: pointer
 }
