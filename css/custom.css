@@ -1,6 +1,12 @@
 body{
 	margin:0px
 }
+:root{
+	--main-bg-color: rgb(250, 250, 250);
+	--secondary-color:rgb(211, 211, 211);
+	--terciary-color: rgb(17, 17, 17);
+	--carto-color: rgb(51, 51, 51);
+}
 .boton{	    
 	padding: 20px;
     border-radius: 30px;
@@ -18,7 +24,7 @@ body{
 	outline: none;
 	margin: 30px;
 	cursor: pointer;
-	background-color: rgb(160, 247, 246);
+	background-color: var(--secondary-color);
 	box-shadow: 3px 5px 5px 1px;
 }
 
@@ -29,14 +35,12 @@ body{
 	height: auto;
 	width: 100%;
 	min-height: 100vh;
-	background: rgb(77, 132, 232);
+	background: var(--main-bg-color);
 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .menus{
 	position: fixed;
-    /* top: 90%; */
-    /* left: 90%; */
     display: flex;
     flex-direction: row-reverse;
     align-content: flex-end;
@@ -51,8 +55,8 @@ body{
 	flex-direction: column;
 	height: auto;
 	width: 320;
-	background: rgb(32, 10, 62);
-	color: rgb(160, 247, 246);
+	background: var(--terciary-color);
+	color: var(--secondary-color);
 	border-radius: 20px;
     box-shadow: 3px 5px 5px 1px black;
 }
@@ -71,9 +75,9 @@ body{
 
 	width: auto;
 	margin-right: 16px;
-	background: rgb(160, 247, 246);
-	color: rgb(32, 10, 62);
 	border-style: none;
+	background: var(--secondary-color);
+	color: var(--terciary-color);
 }
 .vodGrid{
 	flex-wrap: wrap;
@@ -95,7 +99,7 @@ body{
 	justify-content: flex-start;
 	width: auto;
 	height: auto;
-	background: rgb(70, 50, 153);
+	background: var(--carto-color);
 }
 .vodTitleBox{
 	position: absolute;
@@ -113,14 +117,14 @@ body{
     max-width: 300px;
 	text-overflow: ellipsis;
     text-align: center;
-	color: rgb(160, 247, 246);    
+	color:var(--secondary-color);   
 	-webkit-margin-after: 0px;
     -webkit-margin-before: 10px;
 	
 }
 .vodImage{
 	
-	background: rgb(160, 247, 246);
+	background: var(--secondary-color); 
 	padding-left: 16px;
 	padding-right: 16px;
 	padding-top: 16px;
@@ -142,7 +146,7 @@ body{
 	border-style: none;
 	width: 100%;
 	border-radius: 10px;
-	background: rgb(160, 247, 246);
+	background: var(--secondary-color); 
 	padding-left: 16px;
 	padding-right: 16px;
 	outline: none;
@@ -153,7 +157,7 @@ body{
 	border-style: none;
 	
 	border-radius: 10px;
-	background: rgb(160, 247, 246);
+	background: var(--secondary-color); 
 	padding-left: 16px;
 	padding-right: 16px;
 	outline: none;
@@ -164,7 +168,7 @@ body{
 	border-style: none;
 	
 	border-radius: 10px;
-	background: rgb(160, 247, 246);
+	background: var(--secondary-color); 
 	padding-left: 16px;
 	padding-right: 16px;
 	outline: none;

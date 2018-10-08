@@ -11,8 +11,6 @@ exports.state = {
     menuImg : "./resources/menu.png",
     menuToggle : false,
     vods:[
-        {title:"Testing title",imageUrl:"https:\\static-cdn.jtvnw.net\\previews-ttv\\live_user_cohhcarnage-320x180.jpg",pickQlty:false},
-        {imageUrl:"https:\\static-cdn.jtvnw.net\\previews-ttv\\live_user_cohhcarnage-320x180.jpg",pickQlty:false}
     ],
     TwitchConnector:TwitchConnector,
     activeConnector:null
