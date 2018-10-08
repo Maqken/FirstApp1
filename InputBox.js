@@ -5,8 +5,12 @@ exports.component = {
         {
             return m("inputBox",{class:"inputBox", key:inputBox.id },[
                 m("p",{class:"titleInputBox"},inputBox.title),
-                m("input",{class:"inputText",type:"text"})])
-        } 
-        )
+                m("input",{
+                    class:"inputText",
+                    type:"text",
+                    onchange: m.withAttr("value", inputBox.searchMethod),
+                })
+            ])
+        })
     }
 }

@@ -1,6 +1,12 @@
-.boton{	
+body{
+	margin:0px
+}
+.boton{	    
+	padding: 20px;
+    border-radius: 30px;
+    width: 40px;
 	background: url("../resources/menu.png");
-	background-size: 80% 80%;
+	background-size: 60% 60%;
 	background-repeat: no-repeat;
 	background-position: center center;
 	align-self: flex-start;
@@ -11,18 +17,31 @@
 	padding-right: 16px;
 	outline: none;
 	margin: 30px;
-	cursor: pointer
+	cursor: pointer;
+	background-color: rgb(160, 247, 246);
+	box-shadow: 3px 5px 5px 1px;
 }
 
 .appStyle{
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
-	height: 100vh;
-	width: 100vw;
-	background: #55DFBD
+	height: auto;
+	width: 100%;
+	min-height: 100vh;
+	background: rgb(77, 132, 232);
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.menus{
+	position: fixed;
+    /* top: 90%; */
+    /* left: 90%; */
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: flex-end;
+    z-index: 2;
+}
 .panelStyle{
 	position: relative;
 	top: 0;
@@ -30,9 +49,12 @@
 	left: 0;
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	height: auto;
 	width: 320;
-	background: #45B0F9
+	background: rgb(32, 10, 62);
+	color: rgb(160, 247, 246);
+	border-radius: 20px;
+    box-shadow: 3px 5px 5px 1px black;
 }
 .titleInputBox{		
 	width: auto;
@@ -43,12 +65,15 @@
 	
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 }
 .inputText{
 
 	width: auto;
 	margin-right: 16px;
+	background: rgb(160, 247, 246);
+	color: rgb(32, 10, 62);
+	border-style: none;
 }
 .vodGrid{
 	flex-wrap: wrap;
@@ -56,6 +81,9 @@
 	justify-content: flex-start;
 	width: auto;
 	height: auto;
+}
+.vodSlot{
+	display: block
 }
 .vodContainer{
 	overflow: hidden;
@@ -67,11 +95,32 @@
 	justify-content: flex-start;
 	width: auto;
 	height: auto;
-	background: #45B0F9;
+	background: rgb(70, 50, 153);
+}
+.vodTitleBox{
+	position: absolute;
+	background-color: rgba(0,0,0,0.2);
+    margin: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	width:320px
+	
+}
+.vodTitle{     
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 18px;
+    max-width: 300px;
+	text-overflow: ellipsis;
+    text-align: center;
+	color: rgb(160, 247, 246);    
+	-webkit-margin-after: 0px;
+    -webkit-margin-before: 10px;
+	
 }
 .vodImage{
 	
-	background: rgb(69, 249, 159);
+	background: rgb(160, 247, 246);
 	padding-left: 16px;
 	padding-right: 16px;
 	padding-top: 16px;
@@ -79,9 +128,10 @@
 
 }
 .vodControls{
-
-	
-	background: rgb(249, 165, 69);
+	justify-content: space-between;
+	display: flex;
+	width: 80%;
+	align-items: center;
 	padding-left: 16px;
 	padding-right: 16px;
 	padding-top: 16px;
@@ -90,7 +140,31 @@
 .qltyButton{
 	align-self: flex-start;
 	border-style: none;
+	width: 100%;
+	border-radius: 10px;
+	background: rgb(160, 247, 246);
+	padding-left: 16px;
+	padding-right: 16px;
+	outline: none;
+	cursor: pointer
+}
+.qltySelector{
+	align-self: flex-start;
+	border-style: none;
 	
+	border-radius: 10px;
+	background: rgb(160, 247, 246);
+	padding-left: 16px;
+	padding-right: 16px;
+	outline: none;
+	cursor: pointer
+}
+.playButton{
+	align-self: flex-start;
+	border-style: none;
+	
+	border-radius: 10px;
+	background: rgb(160, 247, 246);
 	padding-left: 16px;
 	padding-right: 16px;
 	outline: none;

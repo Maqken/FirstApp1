@@ -17,8 +17,10 @@ var App = {
     view: function()
     {
         return m("div",{class:"appStyle"},[
-            State.menuToggle ? m(Menu,{state:State}) : "",
-            m(MenuBoton,{state:State}),
+            m('div',{class:"menus"},[                
+                State.menuToggle ? m(Menu,{state:State}) : "",
+                m(MenuBoton,{state:State}),
+            ]),
             m(VodDisplay,{state:State})
         ])
     }
