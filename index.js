@@ -1,11 +1,7 @@
 var cmd = require('node-cmd');
-const {google} = require('googleapis');
 var m = require("mithril")
 // initialize the Youtube API library
-const youtube = google.youtube({
-version: 'v3',
-auth: 'AIzaSyCmfo2f63mY7yWZ1t5buHvcAKNskpc65ck',
-});
+
 
 let State = require("./Globals").state
 var MenuBoton = require("./MenuButton").component
