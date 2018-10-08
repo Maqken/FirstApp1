@@ -18,9 +18,9 @@ exports.connector = {
                 return {
                     title:stream.snippet.title,
                     imageUrl:stream.snippet.thumbnails.medium.url,
-                    id:stream.snippet.resourceId.videoId,
+                    id:stream.id,
                     pickQlty:false,
-                    url:'https://www.youtube.com/watch?v=' + stream.snippet.resourceId.videoId,
+                    url:'https://www.youtube.com/watch?v=' + stream.id,
                     play:YoutubeConnector.playVod,
                     getQltys:YoutubeConnector.getQltys
                 }
@@ -91,7 +91,7 @@ exports.connector = {
     getQltys: function(vod){
         vod.qlties = []
         var cmd = require('node-cmd');
-        var command = 'streamlink https://www.youtube.com/watch?v='+vod.id;
+        var command = 'streamlink '+ vod.url;
         cmd.get(command,function (data,err){
             if (!err)
             {
