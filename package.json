@@ -5,9 +5,11 @@
   "devDependencies": {
     "electron": "^1.6.2",
     "jquery": "^3.2.1",
-    "node-cmd": "^2.0.0"
+    "node-cmd": "^2.0.0",
+    "tachyons": "^4.10.0"
   },
   "dependencies": {
-    "googleapis": "^34.0.0"
+    "googleapis": "^34.0.0",
+    "mithril": "^1.1.6"
   }
 }
