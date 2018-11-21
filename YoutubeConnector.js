@@ -45,9 +45,10 @@ exports.connector = {
                 }
             })
             .then(function(result) {
-                console.log(result)
+                //console.log(result)
                 State.vods = State.vods.concat(result.items.map(function(stream){
-                    if (stream.snippet.description == 'This video is unavailable.') return
+                    //console.log(stream.snippet.position)
+                    if (stream.snippet.description == 'This video is unavailable.' || stream.snippet.description == 'This video is private.') return
                     return {
                         title:stream.snippet.title,
                         imageUrl:stream.snippet.thumbnails.medium.url,
@@ -72,8 +73,10 @@ exports.connector = {
             }
         })
         .then(function(result) {
-            console.log(result)
+            //console.log(result)
+            i = 1;
             State.vods = result.items.map(function(stream){
+                //console.log(stream.snippet.position)
                 if (stream.snippet.description == 'This video is unavailable.') return
                 return {
                     title:stream.snippet.title,

@@ -3,10 +3,10 @@ exports.component = {
     {
         return vnode.attrs.state.inputboxes.map(function (inputBox)
         {
-            return m("inputBox",{class:"inputBox", key:inputBox.id },[
-                m("p",{class:"titleInputBox"},inputBox.title),
+            return m("inputBox",{class:"", key:inputBox.id },[
+                m("p",{class:""},inputBox.title),
                 m("input",{
-                    class:"inputText",
+                    class:"",
                     type:"text",
                     onchange: m.withAttr("value", inputBox.searchMethod),
                 })

@@ -13,9 +13,9 @@ var App = {
     view: function()
     {
         return m("div",{class:"appStyle"},[
-            m('div',{class:"menus"},[                
+            m('div',{class:"tc pv2 pv3-ns bg-silver"},[                
                 State.menuToggle ? m(Menu,{state:State}) : "",
-                m(MenuBoton,{state:State}),
+                m('nav',{class:""},[m(MenuBoton,{state:State})])                
             ]),
             m(VodDisplay,{state:State})
         ])

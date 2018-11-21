@@ -11,8 +11,7 @@ exports.state = {
     ],
     menuImg : "./resources/menu.png",
     menuToggle : false,
-    vods:[
-    ],
+    vods:[],
     TwitchConnector:TwitchConnector,
     activeConnector:null
 }
