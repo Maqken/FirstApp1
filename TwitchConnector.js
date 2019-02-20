@@ -1,4 +1,7 @@
 
+
+var Streamlink = require("./Streamlink")
+
 exports.connector = {
     subscriptions: function(userName){
         //urlBase = 'https://api.twitch.tv/kraken/users/:userName/follows/channels'//https://api.twitch.tv/helix/users/follows?from_id=<user ID>
@@ -152,7 +155,7 @@ exports.connector = {
         
         var stream = new Streamlink('twitch.tv/'+vod.userName)
         stream.quality(vod.qlties[vod.selectedQlty])
-        var arguments = ['--player-passthrough','http,hls,rtmp']
+        var arguments = [/*'--player-passthrough','http,hls,rtmp'*/]
         stream.start(null,arguments);
         
         console.log(stream)
