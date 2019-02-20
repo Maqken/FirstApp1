@@ -1,11 +1,11 @@
 exports.component = {
     view:function(vnode)
     {
-        return m("div",{class: "cf pa2 bg-silver black flex-nowrap-m justify-around-ns"},vnode.attrs.state.vods.map(function (vod)
+        return m("div",{class: "cf pa2 bg-silver black flex-nowrap-m justify-around-ns pt5"},vnode.attrs.state.vods.map(function (vod)
             {               
                 return m("div",{class:"fl w-100 w-50-m w-25-ns  db no-underline black br3 bg-moon-gray ba b--black relative"},[
                     m('div',{class:"bg-black-50 w-100 absolute  br3 br--top"},[
-                        m("div",{class:"measure truncate w-90 white  ph3 mr3 nowrap-m"},m("p",{class:""},vod.title))
+                        m("div",{class:"measure truncate w-90 white  ph3 mr3 nowrap-m"},m("p",{class:"title"},vod.title))
                     ]),                    
                     m("div",{class:"br3 br--top"},[
                         m("div",{ class:"aspect-ratio--16x9 cover br3 br--top", style:"background-image:url("+vod.imageUrl+")"}),
