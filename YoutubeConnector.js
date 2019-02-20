@@ -1,3 +1,6 @@
+
+var Streamlink = require("./Streamlink")
+
 exports.connector = {
     
     vod:function(vodId){
@@ -93,37 +96,25 @@ exports.connector = {
     },
     getQltys: function(vod){
         vod.qlties = []
-        var cmd = require('node-cmd');
-        var command = 'streamlink '+ vod.url;
-        cmd.get(command,function (data,err){
-            if (!err)
-            {
-                var pos = data.indexOf('Available streams:');
-                var slicedData = data.slice(pos+18);
-                var pat = /\w+/g;
-                vod.qlties = slicedData.match(pat);
-                vod.pickQlty = true
-                m.redraw()
-            }else{
-                alert(data);
-                console.log(err);
-            }
-        });
-    
         
+        var stream = new Streamlink(vod.url)
+        
+        stream.getQualities()
+        stream.on('quality', (data) => {
+            vod.qlties=data;
+            vod.pickQlty = true
+            m.redraw()
+        });
+        console.log(stream)
 
     },
     
     playVod:function(vod){
-        var cmd = require('node-cmd');
-        var command = 'streamlink '+ vod.url + ' ' + vod.qlties[vod.selectedQlty] + ' --player-passthrough http';
-        cmd.get(command,function (data,err){
-            if (!err)
-            {
-            }else{
-                alert(data);
-                console.log(err);
-            }
-        });
+        var stream = new Streamlink(vod.url)
+        stream.quality(vod.qlties[vod.selectedQlty])
+        var arguments = ['--player-passthrough','http,hls,rtmp']
+        stream.start(null,arguments);
+        
+        console.log(stream)
     }
 }
