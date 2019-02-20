@@ -27,11 +27,11 @@ exports.connector = {
             })
             .then(function(result){
                 userIds = result.data.map(function(user){return "user_id=" + user.to_id})
-                urlBase = "https://api.twitch.tv/helix/streams?first=100&user_id=:userId"
+                urlBase = "https://api.twitch.tv/helix/streams?first=100&" + userIds.join("&")
                 m.request({
                     method: "GET",
                     url: urlBase,
-                    data: {userId:userIds.join("&")},
+                    data: {},
                     headers:{
                         "Client-ID":"j21jts5r8up5ijbt1pav5ngtb6ctkw"
                     }
