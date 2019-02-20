@@ -18,7 +18,7 @@ var App = {
     view: function()
     {
         return m("div",{class:"appStyle"},[
-            m('div',{class:"tc pv2 pv3-ns bg-silver"},[                
+            m('div',{class:"tc pv2 bg-silver fixed w-100 z-3 bb"},[                
                 State.menuToggle ? m(Menu,{state:State}) : "",
                 m('nav',{class:""},[m(MenuBoton,{state:State})])                
             ]),

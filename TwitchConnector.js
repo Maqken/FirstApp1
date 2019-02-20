@@ -1,7 +1,5 @@
 
-
 var Streamlink = require("./Streamlink")
-
 exports.connector = {
     subscriptions: function(userName){
         //urlBase = 'https://api.twitch.tv/kraken/users/:userName/follows/channels'//https://api.twitch.tv/helix/users/follows?from_id=<user ID>
@@ -37,6 +35,7 @@ exports.connector = {
                     }
                 })
                 .then(function(result){
+                    console.log(result)
                     let State = require("./Globals").state
                     State.activeConnector = TwitchConnector
                     State.vods = result.data.map(function(stream){
@@ -45,6 +44,7 @@ exports.connector = {
                             imageUrl:stream.thumbnail_url.replace('{width}','320').replace('{height}','180'),
                             id:stream.user_id,
                             pickQlty:false,
+                            url: 'twitch.tv/'+stream.user_name,
                             play:TwitchConnector.playStream,
                             getQltys:TwitchConnector.getQltys
                         }
@@ -85,6 +85,7 @@ exports.connector = {
                         imageUrl:stream.thumbnail_url.replace('{width}','320').replace('{height}','180'),
                         id:stream.user_id,
                         pickQlty:false,
+                        url: 'twitch.tv/'+stream.user_name,
                         play:TwitchConnector.playStream,
                         getQltys:TwitchConnector.getQltys
                     }
@@ -123,37 +124,23 @@ exports.connector = {
     },
 
     getQltys: function(vod){
+            
         vod.qlties = []
-        urlBase = "https://api.twitch.tv/helix/users?id=:userId"
-        m.request({
-            method: "GET",
-            url: urlBase,
-            data: {userId:vod.id},
-            headers:{
-                "Client-ID":"j21jts5r8up5ijbt1pav5ngtb6ctkw"
-            }
-        })
-        .then(function(result){
-            vod.userName = result.data[0].login
-            
-            vod.qlties = []
+    
+        var stream = new Streamlink(vod.url)
         
-            var stream = new Streamlink('twitch.tv/'+vod.userName)
-            
-            stream.getQualities()
-            stream.on('quality', (data) => {
-                vod.qlties=data;
-                vod.pickQlty = true
-                m.redraw()
-            });
-            console.log(stream)
-        })
+        stream.getQualities()
+        stream.on('quality', (data) => {
+            vod.qlties=data;
+            vod.pickQlty = true
+            m.redraw()
+        });
+        console.log(stream)
         
-
     },
     playStream:function(vod){
         
-        var stream = new Streamlink('twitch.tv/'+vod.userName)
+        var stream = new Streamlink(vod.url)
         stream.quality(vod.qlties[vod.selectedQlty])
         var arguments = [/*'--player-passthrough','http,hls,rtmp'*/]
         stream.start(null,arguments);
