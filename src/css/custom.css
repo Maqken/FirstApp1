@@ -1,0 +1,11 @@
+.title{
+    text-overflow: ellipsis;
+    word-break: break-all;
+    overflow:hidden;
+    white-space: nowrap;
+}
+
+.title:hover{
+    overflow: visible; 
+    white-space: normal; 
+}
