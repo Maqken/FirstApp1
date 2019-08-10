@@ -1,14 +1,12 @@
 var cmd = require('node-cmd');
 var m = require("mithril")
 const net = require('net');
-// initialize the Youtube API library
 
-const path = __dirname;
-let State = require("./../../../src/Globals").state
-var MenuBoton = require("./../../../src/MenuButton").component
-var Menu = require("./../../../src/Menu").component
-var VodDisplay = require("./../../../src/VodDisplay").component
-//player.observeProperty('time-pos',t => console.log('Current time: ' + t))
+const root = __dirname;
+let State = require("./data/Globals").state
+var MenuBoton = require("./view/MenuButton").component
+var Menu = require("./view/Menu").component
+var VodDisplay = require("./view/VodDisplay").component
 
 
 var App = {

@@ -1,5 +1,0 @@
-exports.connector = function (vod){
-
-
-    
-}

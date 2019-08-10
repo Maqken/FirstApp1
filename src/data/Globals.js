@@ -1,5 +1,6 @@
-TwitchConnector = require("./TwitchConnector").connector
-YoutubeConnector = require("./YoutubeConnector").connector
+TwitchConnector = require("../controller/TwitchConnector").connector
+YoutubeConnector = require("../controller/YoutubeConnector").connector
+var Vod = require("./Vod").factory
 const remote = require('electron').remote;
 const app = remote.app;
 let mpv = require('mpv-ipc');
@@ -7,18 +8,16 @@ const Store = require('electron-store');
 const store = new Store({
     cwd:app.getPath('home')+"/Google Drive/StreamlinkData"
 });
-const vodHistory = store.get('history') ? store.get('history') : []
+var vodHistory = store.get('history') ? store.get('history') : []
 const startingvods = vodHistory.map((historyVod)=>{
-    return {
-        title:historyVod.title,
-        imageUrl:historyVod.imageUrl,
-        id:historyVod.id,
-        pickQlty:historyVod.pickQlty,
-        url:historyVod.url,
-        play:YoutubeConnector.playVod,
-        qlties:historyVod.qlties,
-        getQltys:YoutubeConnector.getQltys
-    }
+    return Vod(
+        historyVod.title,
+        historyVod.imageUrl,
+        historyVod.id,        
+        historyVod.url,        
+        historyVod.elapsed,    
+        historyVod.duration,        
+    )
 })
 exports.state = {
     inputboxes:[
@@ -35,8 +34,9 @@ exports.state = {
     player: () => new mpv.MPVClient('\\\\.\\pipe\\tmp-app.mpvsocket'),
     history: vodHistory,
     addToHistory:(vod,history)=>{
+        vodHistory = vodHistory.filter((hVod)=>hVod.id !== vod.id)
+        vodHistory.push(vod)        
         console.log(vodHistory)
-        vodHistory.push(vod)
         store.set('history',vodHistory)
     },
     activeConnector:null
