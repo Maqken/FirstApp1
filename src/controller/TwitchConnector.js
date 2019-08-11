@@ -1,7 +1,9 @@
 
 var Vod = require("../data/Vod").factory
 exports.connector = {
-    subscriptions: function(userName){
+    subscriptions: function(userName){        
+        let State = require("./../data/Globals").state
+        State.addToSearchHistory(userName,'follows')
         //urlBase = 'https://api.twitch.tv/kraken/users/:userName/follows/channels'//https://api.twitch.tv/helix/users/follows?from_id=<user ID>
         urlBase = "https://api.twitch.tv/helix/users?login=:userName"
         m.request({
@@ -36,7 +38,6 @@ exports.connector = {
                 })
                 .then(function(result){
                     console.log(result)
-                    let State = require("./Globals").state
                     State.activeConnector = TwitchConnector
                     State.vods = result.data.map(function(stream){
                         return Vod(                            
@@ -53,6 +54,8 @@ exports.connector = {
 
     },
     stream: function(userName){
+        let State = require("./../data/Globals").state
+        State.addToSearchHistory(userName,'stream')
         //urlBase = 'https://api.twitch.tv/kraken/users/:userName/follows/channels'//https://api.twitch.tv/helix/users/follows?from_id=<user ID>
         urlBase = "https://api.twitch.tv/helix/users?login=:userName"
         m.request({
@@ -89,6 +92,8 @@ exports.connector = {
     },
 
     vod: function(vodId){
+        let State = require("./../data/Globals").state
+        State.addToSearchHistory(vodId,'tVod')
         //urlBase = 'https://api.twitch.tv/kraken/users/:userName/follows/channels'//https://api.twitch.tv/helix/users/follows?from_id=<user ID>
         urlBase = "https://api.twitch.tv/helix/videos?id=:vodId"
         m.request({

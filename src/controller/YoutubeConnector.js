@@ -3,9 +3,9 @@ var Vod = require("../data/Vod").factory
 exports.connector = {
     
     vod:function(vodId){
+        let State = require("./../data/Globals").state
+        State.addToSearchHistory(vodId,'yVod')
         var url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyCmfo2f63mY7yWZ1t5buHvcAKNskpc65ck'
-        
-        let State = require("./Globals").state
         m.request({
             method: "GET",
             url: url,
@@ -20,8 +20,8 @@ exports.connector = {
                 return Vod(
                     stream.snippet.title,
                     stream.snippet.thumbnails.medium.url,
-                    stream.id,
-                    'https://www.youtube.com/watch?v=' + stream.id
+                    stream.snippet.resourceId.videoId,
+                    'https://www.youtube.com/watch?v=' + stream.snippet.resourceId.videoId
                 )
             }).filter(n=>n)
             if (result.nextPageToken) getNextPage(result.nextPageToken)
@@ -30,7 +30,8 @@ exports.connector = {
 
     playListVods:function(listId)
     {
-        let State = require("./Globals").state
+        let State = require("./../data/Globals").state
+        State.addToSearchHistory(listId,'yList')
         //https://content.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLplGIzXSUQ60QXaZQxmktQIhhYNImec92&key=AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw
         url = 'https://content.googleapis.com/youtube/v3/playlistItems?part=snippet&key=AIzaSyCmfo2f63mY7yWZ1t5buHvcAKNskpc65ck'
         var getNextPage = function(nextPageToken)
@@ -44,15 +45,15 @@ exports.connector = {
                 }
             })
             .then(function(result) {
-                //console.log(result)
+                console.log(result)
                 State.vods = State.vods.concat(result.items.map(function(stream){
                     //console.log(stream.snippet.position)
                     if (stream.snippet.description == 'This video is unavailable.' || stream.snippet.description == 'This video is private.') return
                     return Vod(
                         stream.snippet.title,
                         stream.snippet.thumbnails.medium.url,
-                        stream.id,
-                        'https://www.youtube.com/watch?v=' + stream.id
+                        stream.snippet.resourceId.videoId,
+                        'https://www.youtube.com/watch?v=' + stream.snippet.resourceId.videoId
                     )
                 }).filter(n=>n))
                 if (result.nextPageToken)  getNextPage(result.nextPageToken)
@@ -69,7 +70,7 @@ exports.connector = {
             }
         })
         .then(function(result) {
-            //console.log(result)
+            console.log(result)
             i = 1;
             State.vods = result.items.map(function(stream){
                 //console.log(stream.snippet.position)
@@ -77,8 +78,8 @@ exports.connector = {
                 return Vod(
                     stream.snippet.title,
                     stream.snippet.thumbnails.medium.url,
-                    stream.id,
-                    'https://www.youtube.com/watch?v=' + stream.id
+                    stream.snippet.resourceId.videoId,
+                    'https://www.youtube.com/watch?v=' + stream.snippet.resourceId.videoId
                 )
             }).filter(n=>n)
             if (result.nextPageToken) getNextPage(result.nextPageToken)

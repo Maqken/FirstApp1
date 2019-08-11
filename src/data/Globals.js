@@ -8,6 +8,8 @@ const Store = require('electron-store');
 const store = new Store({
     cwd:app.getPath('home')+"/Google Drive/StreamlinkData"
 });
+var searchHistory = store.get('searchHistory') ? store.get('searchHistory') : {}
+console.log(searchHistory)
 var vodHistory = store.get('history') ? store.get('history') : []
 const startingvods = vodHistory.map((historyVod)=>{
     return Vod(
@@ -21,15 +23,15 @@ const startingvods = vodHistory.map((historyVod)=>{
 })
 exports.state = {
     inputboxes:[
-        {id: 1,title:"Twitch Follows",searchMethod:TwitchConnector.subscriptions},
-        {id: 2,title:"Twitch Stream",searchMethod:TwitchConnector.stream},
-        {id: 3,title:"Twitch Vod",searchMethod:TwitchConnector.vod},
-        {id: 4,title:"Youtube Vod",searchMethod:YoutubeConnector.vod},
-        {id: 5,title:"Youtube List",searchMethod:YoutubeConnector.playListVods}
+        {id: 1,title:"Twitch Follows",searchMethod:TwitchConnector.subscriptions,lastSearch:searchHistory.follows},
+        {id: 2,title:"Twitch Stream",searchMethod:TwitchConnector.stream,lastSearch:searchHistory.stream},
+        {id: 3,title:"Twitch Vod",searchMethod:TwitchConnector.vod,lastSearch:searchHistory.tVod},
+        {id: 4,title:"Youtube Vod",searchMethod:YoutubeConnector.vod,lastSearch:searchHistory.yVod},
+        {id: 5,title:"Youtube List",searchMethod:YoutubeConnector.playListVods,lastSearch:searchHistory.yList}
     ],
     menuImg : "./resources/menu.png",
     menuToggle : false,
-    vods: startingvods,
+    vods: startingvods.reverse(),
     TwitchConnector:TwitchConnector,
     player: () => new mpv.MPVClient('\\\\.\\pipe\\tmp-app.mpvsocket'),
     history: vodHistory,
@@ -38,6 +40,11 @@ exports.state = {
         vodHistory.push(vod)        
         console.log(vodHistory)
         store.set('history',vodHistory)
+    },
+    addToSearchHistory:(search,type)=>{
+        searchHistory[type]=search        
+        console.log(searchHistory)
+        store.set('searchHistory',searchHistory)
     },
     activeConnector:null
 

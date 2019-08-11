@@ -9,7 +9,8 @@ exports.component = {
                     class:"",
                     type:"text",
                     onchange: m.withAttr("value", inputBox.searchMethod),
-                })
+                }),
+                m('a',{class:"ph1"},inputBox.lastSearch)
             ])
         })
     }

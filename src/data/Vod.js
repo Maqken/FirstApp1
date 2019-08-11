@@ -3,7 +3,12 @@ var Streamlink = require("../controller/Streamlink")
 exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
     const vod = {}
     vod.pickQlty = false
-    vod.data = {
+    
+    var State = require("./Globals").state
+    var historyVers = State ? State.history.find((hVod)=>{
+        return hVod.id==id //|| hVod.title==title
+    }):false
+    vod.data = historyVers ? historyVers : {
         title:title,
         imageUrl:imageUrl,
         id:id,
@@ -16,12 +21,12 @@ exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
         stream.quality(vod.qlties[vod.selectedQlty])
         var arguments = ['--player-passthrough','http,hls,rtmp']
         stream.start(null,arguments);
-        
-        let State = require("./Globals").state
         setTimeout(()=>
         {
+            var State = require("./Globals").state
+            State.player().seek(vod.data.elapsed)
             State.player().observeProperty('time-pos',t => {
-                if (Math.round(t) % 30 === 0) vod.data.elapsed = t                 
+                if (Math.round(t) % 5 === 0) vod.data.elapsed = t                 
                 m.redraw()
             })
             State.player().getProperty('duration')
@@ -29,11 +34,10 @@ exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
                     vod.data.duration = duration                 
                     m.redraw()
                 });
-            State.player().on('close', function() {
-                console.log("The vod stopped adding to history");
+            State.player().on('close', function(data,asd) {
                 State.addToHistory(vod.data,State.history)
               });
-        },10000)
+        },20000)
         
         console.log(stream)
     }    
