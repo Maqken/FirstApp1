@@ -9,7 +9,6 @@ const store = new Store({
     cwd:app.getPath('home')+"/Google Drive/StreamlinkData"
 });
 var searchHistory = store.get('searchHistory') ? store.get('searchHistory') : {}
-console.log(searchHistory)
 var vodHistory = store.get('history') ? store.get('history') : []
 const startingvods = vodHistory.map((historyVod)=>{
     return Vod(
@@ -38,13 +37,23 @@ exports.state = {
     addToHistory:(vod,history)=>{
         vodHistory = vodHistory.filter((hVod)=>hVod.id !== vod.id)
         vodHistory.push(vod)        
-        console.log(vodHistory)
         store.set('history',vodHistory)
     },
     addToSearchHistory:(search,type)=>{
         searchHistory[type]=search        
-        console.log(searchHistory)
         store.set('searchHistory',searchHistory)
+    },
+    playNextVod:(vod,vods)=>{
+        var vodPosition = vods.reduce((carry,listVod,index)=>{
+            if (listVod.data.id == vod.data.id) return index
+            return carry
+        },null)
+        if (vodPosition !== null && vodPosition < vods.length){
+            var nextVod = vods[vodPosition + 1]
+            nextVod.selectedQlty = vod.selectedQlty
+            nextVod.qlties = vod.qlties
+            nextVod.play(nextVod)
+        }        
     },
     activeConnector:null
 

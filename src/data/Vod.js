@@ -34,12 +34,18 @@ exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
                     vod.data.duration = duration                 
                     m.redraw()
                 });
+            State.player().on('end-file', function(data) {
+                if (vod.data.elapsed > vod.data.duration - 10){
+                    console.log("play next vod!!")
+                    State.playNextVod(vod,State.vods)
+                }
+            });
             State.player().on('close', function(data,asd) {
                 State.addToHistory(vod.data,State.history)
-              });
+                //State.playNextVod(vod.data,State.vods)
+                });
         },20000)
         
-        console.log(stream)
     }    
     vod.getQltys = (vod)=>{
         vod.qlties = []        
@@ -50,7 +56,6 @@ exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
             vod.pickQlty = true
             m.redraw()
         });
-        console.log(stream)
 
     }
     return vod
