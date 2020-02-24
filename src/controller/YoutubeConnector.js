@@ -16,7 +16,7 @@ exports.connector = {
         .then(function(result) {
             console.log(result)
             State.vods = result.items.map(function(stream){
-                if (stream.snippet.description == 'This video is unavailable.') return
+                if (stream.snippet.description == 'This video is unavailable.'|| stream.snippet.description == 'This video is private.') return
                 return Vod(
                     stream.snippet.title,
                     stream.snippet.thumbnails.medium.url,
@@ -74,7 +74,7 @@ exports.connector = {
             i = 1;
             State.vods = result.items.map(function(stream){
                 //console.log(stream.snippet.position)
-                if (stream.snippet.description == 'This video is unavailable.') return
+                if (stream.snippet.description == 'This video is unavailable.' || stream.snippet.description == 'This video is private.') return
                 return Vod(
                     stream.snippet.title,
                     stream.snippet.thumbnails.medium.url,

@@ -105,15 +105,28 @@ exports.connector = {
             }
         })
         .then(function(result) {
-        
             State.activeConnector = TwitchConnector
             State.vods = result.data.map(function(stream){
                 console.log(stream)
+                console.log('hello')
+                console.log( Vod(                            
+                    stream.title,
+                    stream.thumbnail_url.replace('-%{width}x%{height}',''),
+                    stream.user_id,
+                    'https://www.twitch.tv/videos/' + vodId,
+                    0,
+                    0,
+                    false
+                ))
                 return Vod(                            
                     stream.title,
-                    stream.thumbnail_url.replace('{width}','320').replace('{height}','180'),
-                    stream.user_id,
-                    'twitch.tv/'+stream.user_name
+                    stream.thumbnail_url.replace('-%{width}x%{height}',''),
+                    vodId,
+                    'https://www.twitch.tv/videos/' + vodId,
+                    0,
+                    0,
+                    false,
+                    ['--player-passthrough','http,hls,rtmp',]
                 )
             })
         })

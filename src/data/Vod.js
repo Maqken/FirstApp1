@@ -1,6 +1,6 @@
 var Streamlink = require("../controller/Streamlink")
 
-exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
+exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0, playnext = true, arguments= [])=>{
     const vod = {}
     vod.pickQlty = false
     
@@ -14,12 +14,13 @@ exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
         id:id,
         url:url,
         elapsed:elapsed,
-        duration:duration
+        duration:duration,
+        playnext:playnext,
+        arguments:arguments
     }
     vod.play = (vod)=>{
         var stream = new Streamlink(vod.data.url)
         stream.quality(vod.qlties[vod.selectedQlty])
-        var arguments = ['--player-passthrough','http,hls,rtmp']
         stream.start(null,arguments);
         setTimeout(()=>
         {
@@ -37,7 +38,7 @@ exports.factory = (title,imageUrl,id,url,elapsed = 0,duration = 0)=>{
             State.player().on('end-file', function(data) {
                 if (vod.data.elapsed > vod.data.duration - 10){
                     console.log("play next vod!!")
-                    State.playNextVod(vod,State.vods)
+                    if (playnext) State.playNextVod(vod,State.vods)
                 }
             });
             State.player().on('close', function(data,asd) {
