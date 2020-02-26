@@ -25,6 +25,7 @@ exports.state = {
         {id: 1,title:"Twitch Follows",searchMethod:TwitchConnector.subscriptions,lastSearch:searchHistory.follows},
         {id: 2,title:"Twitch Stream",searchMethod:TwitchConnector.stream,lastSearch:searchHistory.stream},
         {id: 3,title:"Twitch Vod",searchMethod:TwitchConnector.vod,lastSearch:searchHistory.tVod},
+        {id: 3,title:"Twitch Vods",searchMethod:TwitchConnector.vods,lastSearch:searchHistory.tVods},
         {id: 4,title:"Youtube Vod",searchMethod:YoutubeConnector.vod,lastSearch:searchHistory.yVod},
         {id: 5,title:"Youtube List",searchMethod:YoutubeConnector.playListVods,lastSearch:searchHistory.yList}
     ],
