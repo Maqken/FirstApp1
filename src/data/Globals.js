@@ -17,7 +17,8 @@ const startingvods = vodHistory.map((historyVod)=>{
         historyVod.id,        
         historyVod.url,        
         historyVod.elapsed,    
-        historyVod.duration,        
+        historyVod.duration,  
+        historyVod.arguments,        
     )
 })
 exports.state = {
