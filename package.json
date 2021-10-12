@@ -18,7 +18,7 @@
     "node-ipc": "^9.1.1",
     "node-mpv": "^1.4.3",
     "tree-kill": "^1.2.1",
-    "electron": "^5.0.4",
+    "electron": "^11.5.0",
     "jquery": "^3.4.1",
     "node-cmd": "^2.0.0",
     "tachyons": "^4.11.1",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "css-loader": "^3.1.0",
-    "electron": "^5.0.4",
+    "electron": "^11.5.0",
     "jquery": "^3.4.1",
     "node-cmd": "^2.0.0",
     "tachyons": "^4.11.1",
